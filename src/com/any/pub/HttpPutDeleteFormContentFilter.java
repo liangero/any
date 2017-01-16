@@ -65,7 +65,7 @@ public class HttpPutDeleteFormContentFilter extends OncePerRequestFilter {
     private static class HttpPutFormContentRequestWrapper extends HttpServletRequestWrapper {
         private MultiValueMap<String, String> formParameters;
 
-        public HttpPutFormContentRequestWrapper(HttpServletRequest request, MultiValueMap<String, String> parameters) {
+        HttpPutFormContentRequestWrapper(HttpServletRequest request, MultiValueMap<String, String> parameters) {
             super(request);
             this.formParameters = parameters != null ? parameters : new LinkedMultiValueMap();
         }
@@ -77,7 +77,7 @@ public class HttpPutDeleteFormContentFilter extends OncePerRequestFilter {
         }
 
         public Map<String, String[]> getParameterMap() {
-            LinkedHashMap result = new LinkedHashMap();
+            LinkedHashMap<String, String[]> result = new LinkedHashMap<>();
             Enumeration names = this.getParameterNames();
 
             while (names.hasMoreElements()) {
