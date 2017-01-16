@@ -26,7 +26,7 @@ public class ExceptionResolves implements HandlerExceptionResolver {
         } else {
             ax = new AnException(e);
         }
-        logger.log(Level.WARNING, ax.getLog(), ax);
+        ax.handleException();
         if (request.getHeader("X-Requested-With") != null && "XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {// JSP格式返回
             return new ModelAndView("error.html");
         } else {// JSON格式返回

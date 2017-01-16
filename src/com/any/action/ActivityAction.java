@@ -5,6 +5,7 @@ import com.any.beans.Activity;
 import com.any.pub.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,10 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ActivityAction implements BaseAction<Activity> {
 
-
-    @RequestMapping(method = RequestMethod.GET, path = "project/{parentId}/activity")
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity get(Activity activity, Integer parentId) {
+    public ResponseEntity get(Activity activity, @PathVariable Integer parentId) {
         Assert.notNull(parentId, "parentId should be null");
         Assert.isTrue(activity.getId() > 0, "activity id should bigger than 0");
         return new ResponseEntity(activity);
