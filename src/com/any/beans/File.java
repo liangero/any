@@ -7,18 +7,19 @@ import java.util.List;
 
 /**
  * tyl
- * Created by avaio on 2016/12/20.
+ * Created by avaio on 2017/3/5.
  */
 @Entity
-public class Project {
+public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_id")
+    private Integer parentId;
+    @OneToMany
+    @JoinColumn(name = "parentId")
     @JSONField(serialize = false)
-    private List<Activity> activityList;
+    private List<File> fileList;
 
     public Integer getId() {
         return id;
@@ -36,11 +37,19 @@ public class Project {
         this.name = name;
     }
 
-    public List<Activity> getActivityList() {
-        return activityList;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setActivityList(List<Activity> activityList) {
-        this.activityList = activityList;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public List<File> getFileList() {
+        return fileList;
+    }
+
+    public void setFileList(List<File> fileList) {
+        this.fileList = fileList;
     }
 }

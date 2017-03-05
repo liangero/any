@@ -49,7 +49,7 @@ public abstract class BaseDao<T> {
     @SuppressWarnings("unchecked")
     public Page<T> getWhenForeignerInParent(T t, Class parentClass, String joinField, Page<T> page, int parentId) {
         DetachedCriteria parentCriteria = DetachedCriteria.forClass(parentClass, "parent");
-        parentCriteria.add(Restrictions.eq("parent.id", (long) parentId));
+        parentCriteria.add(Restrictions.eq("parent.id", parentId));
         DetachedCriteria childCriteria = parentCriteria.createCriteria(joinField, "child");
         Example example = Example.create(t);
         childCriteria.add(example);

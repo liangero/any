@@ -15,11 +15,11 @@ public class BaseAction<T> {
         throw new MsgError(CommonError.ERROR_ACTION);
     }
 
-    public ResponseEntity get(T t, Page page) {
+    public ResponseEntity get(T t, Page<T> page) {
         throw new MsgError(CommonError.ERROR_ACTION);
     }
 
-    public ResponseEntity get(T t, Page page, @PathVariable Integer parentId) {
+    public ResponseEntity get(T t, Page<T> page, @PathVariable Integer parentId) {
         throw new MsgError(CommonError.ERROR_ACTION);
     }
 }
