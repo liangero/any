@@ -33,7 +33,7 @@ public class ExceptionResolves implements HandlerExceptionResolver {
             try {
                 response.setContentType("application/json; charset=utf-8");
                 PrintWriter writer = response.getWriter();
-                writer.write(JSON.toJSONString(new ResponseEntity(false, ax.getMessage()), false));
+                writer.write(JSON.toJSONString(ResponseEntity.createErrResult( ax.getMessage()), false));
                 writer.flush();
                 writer.close();
                 response.getOutputStream().close();

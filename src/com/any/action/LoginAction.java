@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @RequestMapping("login")
 @Controller
-public class LoginAction implements BaseAction<Login> {
+public class LoginAction extends BaseAction<Login> {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -26,7 +26,7 @@ public class LoginAction implements BaseAction<Login> {
         Subject currentUser = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(login.getLogin(), EncryptUtil.encryptByMd5(login.getPassword()));
         currentUser.login(token);
-        return new ResponseEntity(login);
+        return ResponseEntity.createOkResult(login);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -35,7 +35,7 @@ public class LoginAction implements BaseAction<Login> {
         Subject currentUser = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(login.getLogin(), EncryptUtil.encryptByMd5(login.getPassword()));
         currentUser.login(token);
-        return new ResponseEntity(login);
+        return ResponseEntity.createOkResult(login);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -44,7 +44,7 @@ public class LoginAction implements BaseAction<Login> {
         Subject currentUser = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(login.getLogin(), EncryptUtil.encryptByMd5(login.getPassword()));
         currentUser.login(token);
-        return new ResponseEntity(login);
+        return ResponseEntity.createOkResult(login);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
@@ -52,7 +52,7 @@ public class LoginAction implements BaseAction<Login> {
     public ResponseEntity delete(Login login) {
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
-        return new ResponseEntity();
+        return ResponseEntity.createOkResult("");
     }
 
 

@@ -16,6 +16,16 @@
                 <property name="defaultCharset">
                     <bean class="sun.nio.cs.UTF_8"/>
                 </property>
+                <property name="fastJsonConfig">
+                    <bean class="com.alibaba.fastjson.support.config.FastJsonConfig">
+                        <property name="serializerFeatures" >
+                            <bean class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+                                <property name="staticField" value="com.alibaba.fastjson.serializer.SerializerFeature.WriteMapNullValue" />
+                            </bean>
+                        </property>
+                    </bean>
+                </property>
+                <property name="supportedMediaTypes" value="application/json"/>
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>

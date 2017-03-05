@@ -1,6 +1,7 @@
 package com.any.dao;
 
 import com.any.beans.Project;
+import com.any.dao.base.BaseDao;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -8,4 +9,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class ProjectDao extends BaseDao<Project> {
+    @Override
+    protected Class<Project> getEntityClass() {
+        return Project.class;
+    }
 }

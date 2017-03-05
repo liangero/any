@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
  * Created by avaio on 2016/12/23.
  */
 @Controller
-public class UserAction implements BaseAction<User> {
+public class UserAction extends BaseAction<User> {
     public ResponseEntity get(User user) {
         return null;
     }

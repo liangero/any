@@ -6,24 +6,25 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
+ * tyl
  * Created by avaio on 2016/12/20.
  */
 @Entity
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "activity_id")
+    @JoinColumn(name = "project_id")
     @JSONField(serialize = false)
-    private List<Activity> activities;
+    private List<Activity> activityList;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -35,11 +36,11 @@ public class Project {
         this.name = name;
     }
 
-    public List<Activity> getActivities() {
-        return activities;
+    public List<Activity> getActivityList() {
+        return activityList;
     }
 
-    public void setActivities(List<Activity> activities) {
-        this.activities = activities;
+    public void setActivityList(List<Activity> activityList) {
+        this.activityList = activityList;
     }
 }

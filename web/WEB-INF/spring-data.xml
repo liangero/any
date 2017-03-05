@@ -37,7 +37,7 @@
     </bean>
 
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
-        <property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <!-- 配置事务管理器 -->
@@ -49,9 +49,10 @@
     <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
         <!-- 配置详细事务处理语义 -->
         <tx:attributes>
-            <tx:method name="post*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-            <tx:method name="put*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
-            <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="post*" propagation="REQUIRED" rollback-for="java.lang.Exception" no-rollback-for="com.any.pub.AnWarn"/>
+            <tx:method name="put*" propagation="REQUIRED" rollback-for="java.lang.Exception" no-rollback-for="com.any.pub.AnWarn"/>
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception" no-rollback-for="com.any.pub.AnWarn"/>
+            <tx:method name="do*" propagation="REQUIRED" rollback-for="java.lang.Exception" no-rollback-for="com.any.pub.AnWarn"/>
 
             <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
             <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>

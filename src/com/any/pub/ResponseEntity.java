@@ -1,37 +1,32 @@
 package com.any.pub;
 
+import com.any.pub.Constant.GlobalValue;
+
 /**
+ * tyl
  * Created by avaio on 2016/12/21.
  */
 public class ResponseEntity {
-    private boolean success;
-    private Object data;
-    private Long total = null;
-    public ResponseEntity(Object data) {
-        this.success = true;
+    protected int result;
+    protected Object data;
+
+    protected ResponseEntity(int result, Object data) {
+        this.result = result;
         this.data = data;
     }
 
-    public ResponseEntity(boolean success, Object data) {
-        this.success = success;
-        this.data = data;
+    public static ResponseEntity createOkResult(Object data) {
+        return new ResponseEntity(GlobalValue.RESULT_OK, data);
+    }
+    public static ResponseEntity createErrResult(String message) {
+        return new ResponseEntity(GlobalValue.RESULT_ERR, message);
+    }
+    public int getResult() {
+        return result;
     }
 
-    public ResponseEntity(Object data, Long total) {
-        this.data = data;
-        this.total = total;
-    }
-
-    public ResponseEntity() {
-        this("");
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setResult(int result) {
+        this.result = result;
     }
 
     public Object getData() {
@@ -42,11 +37,5 @@ public class ResponseEntity {
         this.data = data;
     }
 
-    public Long getTotal() {
-        return total;
-    }
 
-    public void setTotal(Long total) {
-        this.total = total;
-    }
 }

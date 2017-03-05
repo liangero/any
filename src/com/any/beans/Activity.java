@@ -6,20 +6,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
+ * tyl
  * Created by avaio on 2016/12/20.
  */
 @Entity
 public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -18,32 +18,35 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("project")
-public class ProjectAction implements BaseAction<Project> {
+public class ProjectAction extends BaseAction<Project> {
     @Resource
     private ProjectService projectService;
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity get(Project project) {
         List<Project> projects = projectService.get(project);
-        return new ResponseEntity(projects);
+        return ResponseEntity.createOkResult(projects);
     }
+
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity post(Project project) {
-        project =  projectService.post(project);
-        return new ResponseEntity(project);
+        return ResponseEntity.createOkResult(projectService.post(project));
     }
+
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity put(Project project) {
         project = projectService.put(project);
-        return new ResponseEntity(project);
+        return ResponseEntity.createOkResult(project);
     }
+
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseBody
     public ResponseEntity delete(Project project) {
         projectService.delete(project);
-        return new ResponseEntity(null);
+        return ResponseEntity.createOkResult(null);
     }
 
 

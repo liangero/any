@@ -1,132 +1,66 @@
 package com.any.pub;
 
+import org.springframework.util.Assert;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * tyl
  * Created by avaio on 2016/12/23.
  */
-public class Page {
-    private int pageIndex;
-    private int pageSize;
-    private List<Order> orders =new ArrayList<Order>();
-    private List<Condition> conditions = new ArrayList<Condition>();
-    private List recordes;
-    private long total;
+public class Page<T> {
+    private Integer pageIndex;
+    private Integer pageSize;
+    private List<PageOrder> pageOrder = new ArrayList<PageOrder>();
+    private List<T> recordList;
+    private Integer total;
 
-    public void addCondition(String name, String type, String value){
-        this.conditions.add(new Condition(name, type, value));
+    public int getStart() {
+        Assert.notNull(pageIndex, "pageIndex can't be null");
+        Assert.isTrue(pageIndex >= 1, "pageIndex should more than 1");
+        Assert.notNull(pageSize, "pageSize can't be null");
+        return (pageIndex - 1) * pageSize;
     }
 
-    public ResponseEntity toResponseEntity(){
-        return  new ResponseEntity(recordes,  total);
-    }
 
-    class Order {
-        private String name;
-        private int direct;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getDirect() {
-            return direct;
-        }
-
-        public void setDirect(int direct) {
-            this.direct = direct;
-        }
-    }
-
-    class Condition {
-        private String name;
-        private String type;
-        private String value;
-
-        public Condition(String name, String type, String value) {
-            this.name = name;
-            this.type = type;
-            this.value = value;
-        }
-
-        public Condition() {
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
-    }
-
-    public int getPageIndex() {
+    public Integer getPageIndex() {
         return pageIndex;
     }
 
-    public void setPageIndex(int pageIndex) {
+    public void setPageIndex(Integer pageIndex) {
         this.pageIndex = pageIndex;
     }
 
-    public int getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<PageOrder> getPageOrder() {
+        return pageOrder;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setPageOrder(List<PageOrder> pageOrder) {
+        this.pageOrder = pageOrder;
     }
 
-    public List<Condition> getConditions() {
-        return conditions;
+    public List<T> getRecordList() {
+        return recordList;
     }
 
-    public void setConditions(List<Condition> conditions) {
-        this.conditions = conditions;
+    public void setRecordList(List<T> recordList) {
+        this.recordList = recordList;
     }
 
-    public List getRecordes() {
-        return recordes;
-    }
-
-    public void setRecordes(List recordes) {
-        this.recordes = recordes;
-    }
-
-    public long getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotal(long total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
 }
